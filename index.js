@@ -1,13 +1,13 @@
+#!/usr/bin/env node
+
 // Import filesystem module
 const fs = require('fs')
 
 // Read counter from data/counter.txt
 let counter = parseFloat(fs.readFileSync('data/counter.txt')) || 0
 
-// Convert number to base36
 const toBase36 = number => parseInt(number).toString(36)
 
-// Convert number from base36
 const fromBase36 = number => parseInt(number, 36)
 
 // Save: save current checklist

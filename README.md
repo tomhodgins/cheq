@@ -1,2 +1,37 @@
 # cheq
-Command-line checklist app
+
+A Command-line checklist app
+
+## About
+
+
+
+## Functions
+
+### list
+
+
+
+### tag
+
+
+
+### add
+
+
+
+### remove
+
+
+
+### check
+
+
+
+### uncheck
+
+
+
+### rename
+
+
