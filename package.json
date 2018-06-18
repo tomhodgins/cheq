@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/tomhodgins/cheq/issues"
   },
-  "homepage": "https://github.com/tomhodgins/cheq#readme"
+  "homepage": "https://github.com/tomhodgins/cheq#readme",
+  "dependencies": {
+    "fs": "0.0.1-security"
+  }
 }
