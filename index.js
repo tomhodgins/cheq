@@ -3,6 +3,8 @@
 // Import filesystem module
 const fs = require('fs')
 
+process.chdir(__dirname)
+
 // Read counter from counter.txt
 let counter = parseFloat(fs.readFileSync('./data/counter.txt')) || 0
 
