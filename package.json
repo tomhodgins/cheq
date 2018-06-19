@@ -2,7 +2,7 @@
   "name": "cheq",
   "version": "0.2.0",
   "description": "A command-line checklist app",
-  "main": "index.js",
+  "main": "cheq.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -29,6 +29,6 @@
     "mkdirp": "^0.5.1"
   },
   "bin": {
-    "cheq": "index.js"
+    "cheq": "cheq.js"
   }
 }
