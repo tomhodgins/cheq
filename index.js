@@ -127,8 +127,8 @@ const func = {
         toBase36(task[0])
       } ${
         task[1].status
-        ? '✔'
-        : '✘'
+        ? 'win32' === process.platform ? '√' :'✔'
+        : 'win32' === process.platform ? 'x' : '✘'
       } ${
         task[1].title
       } ${
