@@ -279,7 +279,9 @@ const func = {
 // Run from command-line
 if (process.argv[2]) {
 
-  const [command, ...args] = [...process.argv[2].split(' '), ...process.argv.slice(3)]
+  const [command, ...args] = [
+    ...process.argv[2].split(' '), ...process.argv.slice(3)
+  ]
 
   if (func[command]) {
 
