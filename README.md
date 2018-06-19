@@ -2,7 +2,7 @@
 
 **A command-line checklist app**
 
-![](https://imgur.com/W8IvOMf)
+![](https://imgur.com/W8IvOMf.gif)
 
 ## About
 
