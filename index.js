@@ -4,20 +4,20 @@
 const fs = require('fs')
 
 // Read counter from counter.txt
-let counter = parseFloat(fs.readFileSync('counter.txt')) || 0
+let counter = parseFloat(fs.readFileSync('./data/counter.txt')) || 0
 
 const toBase36 = number => parseInt(number).toString(36)
 
 const fromBase36 = number => parseInt(number, 36)
 
 // Save: save current checklist
-function save(data={}, file='data.json') {
-  fs.writeFileSync('counter.txt', counter)
+function save(data={}, file='./data/data.json') {
+  fs.writeFileSync('./data/counter.txt', counter)
   return fs.writeFileSync(file, JSON.stringify(data))
 }
 
 // Load: load checlist from JSON
-function load(file='data.json') {
+function load(file='./data/data.json') {
   const text = fs.readFileSync(file)
   return JSON.parse(
     text.length
