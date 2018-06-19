@@ -2,7 +2,7 @@
 
 **A command-line checklist app**
 
-![](https://imgur.com/W8IvOMf.gif)
+![walkthrough of cheq](https://i.imgur.com/M06r5rG.gif)
 
 ## About
 
