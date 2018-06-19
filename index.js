@@ -173,7 +173,7 @@ const func = {
   // Remove: remove checklist item
   remove: function(...terms) {
 
-    const data = load()
+    let data = load()
 
     if (keywords.includes(terms[0])) {
 
