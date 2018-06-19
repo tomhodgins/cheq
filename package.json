@@ -3,11 +3,6 @@
   "version": "0.1.2",
   "description": "A command-line checklist app",
   "main": "index.js",
-  "files": [
-    "data",
-    "data/counter.txt",
-    "data/data.json"
-  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -29,7 +24,9 @@
   },
   "homepage": "https://github.com/tomhodgins/cheq#readme",
   "dependencies": {
-    "fs": "0.0.1-security"
+    "cachedir": "^2.0.0",
+    "fs": "0.0.1-security",
+    "mkdirp": "^0.5.1"
   },
   "bin": {
     "cheq": "index.js"

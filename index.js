@@ -2,12 +2,18 @@
 
 // Import filesystem module
 const fs = require('fs')
+const path = require('path')
+const mkdirp = require('mkdirp')
+const cachedir = require('cachedir')
+const cache = cachedir('cheq')
 
-// Change working directory to module's location
-process.chdir(__dirname)
+// Create cached files if they don't exist yet
+mkdirp.sync(cache)
+fs.writeFileSync(path.resolve(cache, 'counter.txt'), '', {flag: 'a'})
+fs.writeFileSync(path.resolve(cache, 'data.json'), '', {flag: 'a'})
 
 // Read counter from counter.txt
-let counter = parseFloat(fs.readFileSync('./data/counter.txt')) || 0
+let counter = parseFloat(fs.readFileSync(path.resolve(cache, 'counter.txt'))) || 0
 
 // Convert number to base36
 const toBase36 = number => parseInt(number).toString(36)
@@ -16,16 +22,16 @@ const toBase36 = number => parseInt(number).toString(36)
 const fromBase36 = number => parseInt(number, 36)
 
 // Save: save current checklist
-function save(data={}, file='./data/data.json') {
+function save(data={}, file=path.resolve(cache, 'data.json')) {
 
-  fs.writeFileSync('./data/counter.txt', counter)
+  fs.writeFileSync(path.resolve(cache, 'counter.txt'), counter)
 
   return fs.writeFileSync(file, JSON.stringify(data))
 
 }
 
 // Load: load checlist from JSON
-function load(file='./data/data.json') {
+function load(file=path.resolve(cache, 'data.json')) {
 
   const text = fs.readFileSync(file)
 
@@ -134,6 +140,52 @@ const func = {
 
   },
 
+  // Add: add new checklist item
+  add: function(...title) {
+
+    const data = load()
+
+    data[counter] = {
+      title: title.join(' '),
+      tags: [],
+      status: false
+    }
+    counter++
+
+    return save(data)
+
+  },
+
+  // Check: change status of checklist item to checked
+  check: function(id) {
+
+    const data = load()
+
+    if (data[fromBase36(id)] && !data[fromBase36(id)].status) {
+
+      data[fromBase36(id)].status = true
+
+    }
+
+    return save(data)
+
+  },
+
+  // Uncheck: change status of checklist item to unchecked
+  uncheck: function(id) {
+
+    const data = load()
+
+    if (data[fromBase36(id)] && data[fromBase36(id)].status) {
+
+      data[fromBase36(id)].status = false
+
+    }
+
+    return save(data)
+
+  },
+
   // Tag: add tag to checklist item
   tag: function(id, ...tags) {
 
@@ -154,17 +206,16 @@ const func = {
 
   },
 
-  // Add: add new checklist item
-  add: function(...title) {
+  // Rename: change title of existing checklist item by id
+  rename: function(id, ...title) {
 
     const data = load()
 
-    data[counter] = {
-      title: title.join(' '),
-      tags: [],
-      status: false
+    if (data[fromBase36(id)] && title) {
+
+      data[fromBase36(id)].title = title.join(' ')
+
     }
-    counter++
 
     return save(data)
 
@@ -223,59 +274,12 @@ const func = {
 
   },
 
-  // Check: change status of checklist item to checked
-  check: function(id) {
-
-    const data = load()
-
-    if (data[fromBase36(id)] && !data[fromBase36(id)].status) {
-
-      data[fromBase36(id)].status = true
-
-    }
-
-    return save(data)
-
-  },
-
-  // Uncheck: change status of checklist item to unchecked
-  uncheck: function(id) {
-
-    const data = load()
-
-    if (data[fromBase36(id)] && data[fromBase36(id)].status) {
-
-      data[fromBase36(id)].status = false
-
-    }
-
-    return save(data)
-
-  },
-
-  // Rename: change title of existing checklist item by id
-  rename: function(id, ...title) {
-
-    const data = load()
-
-    if (data[fromBase36(id)] && title) {
-
-      data[fromBase36(id)].title = title.join(' ')
-
-    }
-
-    return save(data)
-
-  }
-
 }
 
 // Run from command-line
 if (process.argv[2]) {
 
-  const cli = [...process.argv[2].split(' '), ...process.argv.slice(3)]
-  const command = cli[0]
-  const args = cli.slice(1)
+  const [command, ...args] = [...process.argv[2].split(' '), ...process.argv.slice(3)]
 
   if (func[command]) {
 
