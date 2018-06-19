@@ -30,5 +30,8 @@
   "homepage": "https://github.com/tomhodgins/cheq#readme",
   "dependencies": {
     "fs": "0.0.1-security"
+  },
+  "bin": {
+    "cheq": "index.js"
   }
 }
