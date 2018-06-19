@@ -191,9 +191,11 @@ const func = {
 
 // Run from command-line
 if (process.argv[2]) {
-  const cli = process.argv[2].split(' ')
-  if (func[cli[0]]) {
-    func[cli[0]](...cli.slice(1))
+  const cli = [...process.argv[2].split(' '), ...process.argv.slice(3)]
+  const command = cli[0]
+  const args = cli.slice(1)
+  if (func[command]) {
+    func[command](...args)
   } else {
     help()
   }
