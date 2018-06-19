@@ -2,6 +2,8 @@
 
 **A command-line checklist app**
 
+![](https://imgur.com/W8IvOMf)
+
 ## About
 
 This is a command-line checklist with a simple text-based UI for adding, listing, removing, tagging, checking and renaming checklist items.
@@ -25,11 +27,12 @@ cheq list <keyword>
 cheq list
 cheq list all
 cheq list tagged work
+cheq list tagged work project1
 cheq list checked
 cheq list unchecked
 ```
 
-The `list` function displays all of your checklist items by default. You can use the special keyword `all` to display a list of all checklist items, `tagged <term>` to list only those checklist items that are tagged with a string, or `checked` or `unchecked` to display checklist items with a matching status.
+The `list` function displays all of your checklist items by default. You can use the special keyword `all` to display a list of all checklist items, `tagged <terms>` to list only those checklist items that are tagged with one or more space separated tags, or `checked` or `unchecked` to display checklist items with a matching status.
 
 ### tag
 
@@ -61,13 +64,14 @@ cheq remove <id>
 
 // example
 cheq remove all
-cheq remove tagged project1
+cheq remove tagged work
+cheq remove tagged work project1
 cheq remove checked
 cheq remove unchecked
 cheq remove a3
 ```
 
-Using the `remove` function we can remove individual checklist items by their ID, or sets of items matching keywords `all`, `tagged` with a tag supplied, `checked` or `unchecked`. This action is irreversible.
+Using the `remove` function we can remove individual checklist items by their ID, or sets of items matching keywords `all`, `tagged` with one or more tags supplied, `checked` or `unchecked`. This action is irreversible.
 
 ### check
 
