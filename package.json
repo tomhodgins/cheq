@@ -3,11 +3,6 @@
   "version": "0.0.5",
   "description": "A command-line checklist app",
   "main": "index.js",
-  "files": [
-    "data",
-    "data/counter.txt",
-    "data/data.json"
-  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
