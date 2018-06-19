@@ -1,6 +1,6 @@
 {
   "name": "cheq",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "A command-line checklist app",
   "main": "cheq.js",
   "scripts": {
