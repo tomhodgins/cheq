@@ -83,7 +83,9 @@ const func = {
             items = Object.entries(data)
               .filter(item =>
                 terms.slice(1).every(term =>
-                  item[1].tags.includes(term)
+                  item[1].tags
+                    .map(tag => tag.toLowerCase())
+                    .includes(term.toLowerCase())
                 )
               )
           break
@@ -127,7 +129,7 @@ const func = {
         toBase36(task[0])
       } ${
         task[1].status
-        ? 'win32' === process.platform ? '√' :'✔'
+        ? 'win32' === process.platform ? '√' : '✔'
         : 'win32' === process.platform ? 'x' : '✘'
       } ${
         task[1].title
@@ -238,7 +240,9 @@ const func = {
           for (let task in data) {
             if (
               terms.slice(1).every(term =>
-                data[task].tags.includes(term)
+                data[task].tags
+                  .map(tag => tag.toLowerCase())
+                  .includes(term.toLowerCase())
               )
             ) {
               delete data[task]
