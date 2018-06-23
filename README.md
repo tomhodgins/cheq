@@ -10,10 +10,12 @@ This is a command-line checklist with a simple text-based UI for adding, listing
 
 ### Installation
 
-You can download cheq here on Github, or install from npm:
+This software is available as a Node module from npm, as well as pre-built binaries for windows, mac, and linux available on Github in the [releases](https://github.com/tomhodgins/cheq/releases/latest) tab.
+
+To install cheq globally with npm, enter this into your shell:
 
 ```
-$ npm -i g cheq
+$ npm install -g cheq
 ```
 
 ## Functions
